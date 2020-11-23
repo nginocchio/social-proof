@@ -53,6 +53,7 @@ main {
   margin-right: auto;
   text-align: center;
   line-height: 1;
+  margin-top: 0;
 }
 
 .lead {
@@ -62,7 +63,10 @@ main {
 }
 
 .reviews {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
+  gap: 1em;
   padding: 0;
 }
 
@@ -70,11 +74,9 @@ main {
   background-color: var(--clr-light-gray-magenta);
   border-radius: var(--rounded);
   padding: 0.25em 0.75em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: var(--clr-magenta);
   font-weight: var(--fw-bold);
+  text-align: center;
 }
 
 .reviewed-by {
@@ -85,27 +87,23 @@ main {
   margin-top: 0.5em;
 }
 
-.review + .review {
-  margin-top: 0.75em;
-}
-
 .testimonials {
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
+  gap: 1em;
   padding: 0;
+  margin-top: 2em;
 }
 
 .testimonial {
   background-color: var(--clr-magenta);
   border-radius: var(--rounded);
-  padding: 2em;
-}
-
-.testimonial + .testimonial {
-  margin-top: 0.75em;
+  padding: 2.25em;
 }
 
 .user {
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
   display: flex;
   align-items: center;
 }
@@ -129,7 +127,6 @@ main {
 
 .testimonial-text {
   color: var(--clr-white);
-  font-weight: var(--fw-medium);
 }
 
 @media screen and (min-width: 600px) {
@@ -137,33 +134,84 @@ main {
     margin: 0 2em;
   }
 
-  .review {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .stars {
-    margin: 0 2em;
-  }
-
-  .grabber {
-    grid-area: grabber-area;
-  }
-
-  .reviews {
-    grid-area: review-area;
+  .main {
+    max-width: 24rem;
+    margin: 4rem auto;
   }
 
   .testimonials {
-    grid-area: content-area;
+    display: flex;
+    gap: 2em;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .grabber {
+    grid-area: grabber;
+  }
+
+  .reviews {
+    grid-area: reviews;
+    align-items: flex-end;
+  }
+
+  .testimonials {
+    grid-area: testimonials;
   }
 
   .main {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 50px;
+    max-width: 70rem;
+    grid-template-columns: 3fr 4fr;
     grid-template-areas:
-      "grabber-area review-area"
-      "content-area content-area";
+      "grabber reviews"
+      "testimonials testimonials";
+  }
+
+  .headline {
+    margin-left: 0;
+    font-size: 3em;
+  }
+
+  .headline,
+  .lead {
+    text-align: left;
+  }
+
+  .review {
+    width: 28rem;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+  }
+
+  .review:nth-child(1) {
+    transform: translateX(-6em);
+  }
+
+  .review:nth-child(2) {
+    transform: translateX(-3em);
+  }
+
+  .reviewed-by,
+  .stars {
+    margin: 0;
+  }
+
+  .stars {
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+
+  .testimonials {
+    flex-direction: row;
+  }
+
+  .testimonial:nth-child(1) {
+    transform: translateY(-2em);
+  }
+
+  .testimonial:nth-child(2) {
+    transform: translateY(-1em);
   }
 }
